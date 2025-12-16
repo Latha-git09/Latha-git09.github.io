@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latha - Software Developer Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #3f51b5;
+            --accent-color: #ff4081;
+            --text-color: #333;
+            --light-bg: #ecf0f1;
+            --white: #ffffff;
+            --gradient-1: #667eea;
+            --gradient-2: #764ba2;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: linear-gradient(135deg, var(--gradient-1) 0%, var(--gradient-2) 100%);
+            background-attachment: fixed;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(26, 35, 126, 0.95);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0 1.5rem;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 1rem;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header Section */
+        header {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200') center/cover;
+            color: var(--white);
+            text-align: center;
+            padding: 150px 20px 100px;
+            margin-top: 60px;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid var(--white);
+            margin-bottom: 1rem;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        header p {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .header-contact {
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+
+        .header-contact i {
+            margin-right: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        /* Section Styles */
+        section {
+            background: var(--white);
+            margin: 2rem auto;
+            padding: 3rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            max-width: 1200px;
+        }
+
+        section h2 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        section h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--secondary-color);
+        }
+
+        /* Intro Section */
+        #intro .intro-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        #intro .intro-text {
+            flex: 1;
+            min-width: 300px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 50px;
+        }
+
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--secondary-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: -37px;
+            top: 0;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+            border: 3px solid var(--white);
+            box-shadow: 0 0 0 3px var(--secondary-color);
+        }
+
+        .timeline-date {
+            color: var(--secondary-color);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .timeline-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .timeline-item .company {
+            color: var(--secondary-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .timeline-item ul {
+            margin-top: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        .timeline-item ul li {
+            margin-bottom: 0.7rem;
+            line-height: 1.6;
+        }
+
+        /* Project Section */
+        .project-card {
+            background: var(--light-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .project-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .project-card ul {
+            padding-left: 1.5rem;
+        }
+
+        .project-card ul li {
+            margin-bottom: 0.8rem;
+            line-height: 1.7;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-top: 3px solid var(--secondary-color);
+        }
+
+        .skill-category h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: var(--white);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 2px solid var(--secondary-color);
+            transition: all 0.3s;
+        }
+
+        .skill-tag:hover {
+            background: var(--secondary-color);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* Tools Section */
+        .tools-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .tool-badge {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            color: var(--white);
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+
+        .tool-badge:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+
+        /* CV Section */
+        #cv {
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin-top: 1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .btn i {
+            margin-right: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 1.2rem;
+            }
+
+            #intro .intro-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+
+            .timeline {
+                padding-left: 30px;
+            }
+
+            .timeline:before {
+                left: 10px;
+            }
+
+            .timeline-item:before {
+                left: -27px;
+            }
+        }
+
+        /* Scroll Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#intro">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#tools">Tools</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#cv">CV</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <img src="images/profile.jpg" alt="Latha Profile" class="profile-img">
+        <h1>Latha</h1>
+        <p>SOFTWARE DEVELOPER</p>
+        <div class="header-contact">
+            <i class="fas fa-phone"></i> +91-7996608321
+        </div>
+        <div class="social-links">
+            <a href="https://linkedin.com/in/yourprofile" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/Latha-git09" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="mailto:lathapg09@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+    </header>
+
+    <!-- Professional Summary -->
+    <section id="intro">
+        <h2>Professional Summary</h2>
+        <div class="intro-content">
+            <div class="intro-text">
+                <p>Results-oriented <strong>Full Stack Java Developer</strong> with over <strong>4 years</strong> of proven expertise in designing, developing, and deploying enterprise-grade applications leveraging Java, Spring Boot, React, and microservices architecture.</p>
+                <p>Adept at architecting highly scalable systems, seamless API integrations and automating deployment workflows through advanced DevOps practices. A collaborative professional with deep expertise in agile methodologies and rigorous secure software development standards.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2>Work Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">October 2021 - Present</div>
+                <h3>Software Developer</h3>
+                <p class="company">Trio Edge Software Solutions</p>
+                <p style="color: #666; margin-bottom: 1rem;">Bengaluru, Karnataka</p>
+                <ul>
+                    <li>Developed scalable microservices using Spring Boot, Spring Data JPA, Hibernate, improving throughput by 30%</li>
+                    <li>Implemented Spring Security, OAuth2, and JWT to secure APIs and enable role-based access control</li>
+                    <li>Automated deployments using Jenkins CI/CD, Docker, Kubernetes, reducing deployment time by 45%</li>
+                    <li>Designed REST APIs integrating with external partner systems, improving interoperability across services</li>
+                    <li>Improved Oracle query performance by reducing execution time by 40% through indexing and optimized schema design</li>
+                </ul>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">August 2018 - 2019</div>
+                <h3>Assistant System Engineer</h3>
+                <p class="company">Tata Consultancy Services (TCS)</p>
+                <p style="color: #666; margin-bottom: 1rem;">Bengaluru, Karnataka</p>
+                <ul>
+                    <li>Contributed to the <strong>Trent 7000 engine software system</strong> in the aerospace domain</li>
+                    <li>Improved reliability and performance of engine control modules through ADA-based development</li>
+                    <li>Worked in partnership with <strong>Rolls-Royce</strong> on critical aerospace systems</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>Featured Project</h2>
+        <div class="project-card">
+            <h3><i class="fas fa-chart-line"></i> Credit Score Analysis Tool</h3>
+            <ul>
+                <li>Developed a microservices-based Credit Score Analysis Tool to automate credit score evaluation by integrating data from multiple sources such as credit bureaus and banking transactions</li>
+                <li>Implemented real-time credit scoring and predictive analytics to assess customer behavior and creditworthiness</li>
+                <li>Designed and deployed scalable service components for efficient performance and reliability</li>
+                <li>Enhanced reporting capabilities to deliver comprehensive insights for bank staff and decision-makers</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3><i class="fas fa-code"></i> Programming Languages</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">TypeScript</span>
+                    <span class="skill-tag">HTML5</span>
+                    <span class="skill-tag">CSS3</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3><i class="fas fa-server"></i> Backend Technologies</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Spring Boot</span>
+                    <span class="skill-tag">Spring Security</span>
+                    <span class="skill-tag">Spring JPA</span>
+                    <span class="skill-tag">Microservices</span>
+                    <span class="skill-tag">RESTful APIs</span>
+                    <span class="skill-tag">OAuth</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3><i class="fas fa-desktop"></i> Frontend Technologies</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">React JS</span>
+                    <span class="skill-tag">Next JS</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3><i class="fas fa-tools"></i> DevOps & CI/CD</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Jenkins</span>
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">Kubernetes</span>
+                    <span class="skill-tag">Maven</span>
+                    <span class="skill-tag">CI/CD Pipeline</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3><i class="fas fa-database"></i> Databases</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Oracle</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">Spring Data JPA</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3><i class="fas fa-sitemap"></i> Architecture & Design</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Microservices</span>
+                    <span class="skill-tag">System Design</span>
+                    <span class="skill-tag">Solution Architecture</span>
+                    <span class="skill-tag">Distributed Systems</span>
+                    <span class="skill-tag">Scalable Systems</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3><i class="fas fa-shield-alt"></i> Security</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Spring Security</span>
+                    <span class="skill-tag">OAuth 2.0</span>
+                    <span class="skill-tag">JWT</span>
+                    <span class="skill-tag">Authentication</span>
+                    <span class="skill-tag">Authorization</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3><i class="fas fa-check-circle"></i> Testing & Quality</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">JUnit</span>
+                    <span class="skill-tag">Unit Testing</span>
+                    <span class="skill-tag">SonarQube</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3><i class="fas fa-tasks"></i> Methodologies</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Agile</span>
+                    <span class="skill-tag">Scrum</span>
+                    <span class="skill-tag">SDLC</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3><i class="fas fa-code-branch"></i> Version Control</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">GitHub</span>
+                    <span class="skill-tag">GitLab</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools & IDE Section -->
+    <section id="tools">
+        <h2>Tools & IDE</h2>
+        <div class="tools-container">
+            <div class="tool-badge"><i class="fas fa-leaf"></i> Spring Tool Suite (STS)</div>
+            <div class="tool-badge"><i class="fas fa-code"></i> VS Code</div>
+            <div class="tool-badge"><i class="fas fa-eclipse"></i> Eclipse IDE</div>
+            <div class="tool-badge"><i class="fas fa-rocket"></i> Postman</div>
+            <div class="tool-badge"><i class="fas fa-database"></i> DBeaver</div>
+            <div class="tool-badge"><i class="fas fa-brain"></i> IntelliJ IDEA</div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <h2>Education</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">2014 - 2018</div>
+                <h3>Bachelor of Engineering</h3>
+                <p class="company">Bapuji Institute of Engineering & Technology</p>
+                <p style="color: #666; margin-bottom: 0.5rem;">Davangere, Karnataka</p>
+                <p><strong>Major:</strong> Electronics & Instrumentation Engineering</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CV Section -->
+    <section id="cv">
+        <h2>Download My Resume</h2>
+        <p style="font-size: 1.1rem; margin-bottom: 1rem;">Interested in learning more about my experience and qualifications?</p>
+        <a href="assets/Latha_Resume.pdf" class="btn" download><i class="fas fa-download"></i> Download Resume (PDF)</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Latha | Software Developer Portfolio</p>
+        <p>Built with <i class="fas fa-heart" style="color: #ff4081;"></i> using modern web technologies</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">
+            <a href="mailto:lathapg09@gmail.com">Contact Me</a> | 
+            <a href="tel:+917996608321">+91-7996608321</a>
+        </p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Animate sections on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-on-scroll');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Active navigation highlight
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('nav a').forEach(link => {
+                link.style.color = '';
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.style.color = '#ff4081';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
